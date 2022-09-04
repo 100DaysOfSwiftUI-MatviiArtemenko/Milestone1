@@ -11,6 +11,7 @@ struct NewGameView: View {
     let color = Color(red: 0.85, green: 0.7, blue: 0.45)
 
     @Binding var gameMode: Bool
+    
     let gameMoves = ["Rock", "Paper", "Scissors"]
     
     @State private var playerOneMove = ""
@@ -32,7 +33,8 @@ struct NewGameView: View {
         ZStack {
             color
                 .ignoresSafeArea()
-            if gameMode { // if vs other player
+            
+            if gameMode { // if vs other player // regarding to game mode displays different layout
                 VStack(spacing: 20) {
                     HStack {
                         ForEach(gameMoves, id: \.self) { key in
@@ -108,12 +110,14 @@ struct NewGameView: View {
                         }
                     }
                     .font(.system(size: 50))
+                    
                     Button {
                         withAnimation {
                             vsComputer(resultOne: playerOneMove)
                         }
+                        
                     } label: {
-                        Text(playerOneSubmited ? "compare." : "pick your move.") // changes text and action on conditions
+                        Text(playerOneSubmited ? "compare." : "pick your move.")
                     }
                     .foregroundColor(.secondary)
                     .font(.headline)
@@ -134,16 +138,17 @@ struct NewGameView: View {
         }
     }
     func chechSubmition(resultOne: String, resultTwo: String) {
+        
             if playerOneSubmited && playerTwoSubmited {
                 withAnimation {
                     compare(first: resultOne, second: resultTwo)
                     playerOneSubmited = false
                     playerTwoSubmited = false
-
                 }
             }
         presentAlert()
     }
+    
     func vsComputer(resultOne: String) {
         let computerMove = gameMoves.randomElement() ?? ""
         compare(first: resultOne, second: computerMove)
@@ -151,6 +156,7 @@ struct NewGameView: View {
         playerTwoSubmited = false
         presentAlert()
     }
+    
     func presentAlert() {
         if playerOneScore + playerTwoScore == 3 {
             showingAlert = true
@@ -165,6 +171,7 @@ struct NewGameView: View {
                 }            }
         }
     }
+    
     func labelText() -> String{
         var text = ""
         if !playerOneSubmited {
@@ -176,6 +183,7 @@ struct NewGameView: View {
         }
         return text
     }
+    
     func compare(first resultOne: String, second resultTwo: String) {
         switch resultOne {
         case "Rock":
@@ -213,6 +221,7 @@ struct NewGameView: View {
             }
         }
     }
+    
     func setButtonLabel(key: String) -> String {
         var label = ""
         switch key {
@@ -227,8 +236,8 @@ struct NewGameView: View {
     }
 }
 
-//struct NewGameView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewGameView()
-//    }
-//}
+struct NewGameView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewGameView(gameMode: .constant(true))
+    }
+}

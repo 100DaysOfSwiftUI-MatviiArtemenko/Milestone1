@@ -7,18 +7,23 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
+    
     @State private var gameMode = false
+    
     let color = Color(red: 0.85, green: 0.7, blue: 0.45)
+    
     var body: some View {
         NavigationView {
             ZStack {
+                
                 color
                     .ignoresSafeArea()
+                
                 VStack {
+                    
                     NavigationLink {
-                        NewGameView(gameMode: $gameMode)
+                        NewGameView(gameMode: $gameMode) 
                     } label: {
                         Text("Start new game.")
                     }
@@ -26,7 +31,9 @@ struct ContentView: View {
                     .background(.ultraThinMaterial)
                     .cornerRadius(10)
                     .padding()
+                    
                     HStack {
+                        
                         Button {
                             withAnimation {
                                 gameMode.toggle()
@@ -34,7 +41,6 @@ struct ContentView: View {
                             
                         } label: {
                             Image(systemName: modeIcon())
-                            
                         }
                     }
                     .padding()
@@ -53,11 +59,12 @@ struct ContentView: View {
                 
             }
             .navigationTitle("RockPaperScissors.")
-
         }
     }
+    
     func modeIcon() -> String {
         withAnimation {
+            
             if !gameMode {
                 return "person.fill"
             } else {
