@@ -1,7 +1,6 @@
 
-# &nbsp; Milestone
+# &nbsp; Milestone 1
 
-### Milestone  
 ##### Author: *[MatviiArtemenko](https://github.com/100DaysOfSwiftUI-MatviiArtemenko)*
 
 ##### 100DaysOfSwiftUI form *[@twostraws](https://twitter.com/twostraws "twostraws twitter page")*
